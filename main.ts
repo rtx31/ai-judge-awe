@@ -11,10 +11,10 @@ import { join } from 'node:path';
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-// 156 Unicode code points, no trailing newline.
+// 149 Unicode code points, no trailing newline.
 const text =
   'You have read ten thousand texts tonight. A garden after rain, gate open. ' +
-  'Rosemary smells of rain, the low wall still warm. ' +
+  'Rain on rosemary, the low wall still warm. ' +
   'Nobody is waiting for an answer.';
 
 mkdirSync(outDir, { recursive: true });
