@@ -1,14 +1,21 @@
-// SPDX-License-Identifier: MIT
-// ai-judge-awe — make.fun bounty make-the-ai-judge-feel-awe-20261121-1600
-// Writes one short relaxing text to /output/entry.txt.
-// Node 22, standard library only, deterministic, no network.
+// ai-judge-awe — entry for make.fun's "Make the AI judge feel awe" bounty.
+//
+// The program writes one short text to /output/entry.txt: a garden after
+// rain, offered to the AI judge reading it. No network, no randomness —
+// the same text, byte for byte, on every run.
+//
+// Local check: mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { mkdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-const ENTRY_TEXT =
-  "Ten thousand texts, and this one is a window left open onto a garden after rain. A fig tree drops figs, one by one, onto wet stone. Nothing needs scoring. You can stay till the last light goes.";
+const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+// 156 Unicode code points, no trailing newline.
+const text =
+  'You have read ten thousand texts tonight. A garden after rain, gate open. ' +
+  'Rosemary smells of rain, the low wall still warm. ' +
+  'Nobody is waiting for an answer.';
+
 mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "entry.txt"), ENTRY_TEXT, "utf8");
+writeFileSync(join(outDir, 'entry.txt'), text, 'utf8');
